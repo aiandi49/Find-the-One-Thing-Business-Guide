@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Find the One Thing — A Business Bottleneck Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --bg-soft: #eef9f7;
+    --bg-soft-2: #e0f5f0;
+    --panel: #ffffff;
+    --ink: #0a3538;
+    --ink-soft: #4c7370;
+    --ink-faint: #7c9c99;
+    --line: rgba(10,53,56,0.12);
+    --turquoise: #0e9488;
+    --turquoise-deep: #0a6e66;
+    --ocean: #0b4f6c;
+    --ocean-deep: #072f42;
+    --aqua: #3fc9c9;
+    --seafoam: #cdf1e8;
+    --shadow-1: 0 1px 2px rgba(7,47,66,0.06), 0 8px 24px -12px rgba(7,47,66,0.18);
+    --shadow-2: 0 2px 6px rgba(7,47,66,0.08), 0 20px 45px -20px rgba(7,47,66,0.28);
+    --radius-s: 10px;
+    --radius-m: 16px;
+    --radius-l: 26px;
+    --fs-scale: 1;
+    --maxw: 1280px;
+    color-scheme: light;
+  }
+  html.dark{
+    --bg: #06262b;
+    --bg-soft: #082f35;
+    --bg-soft-2: #0a373d;
+    --panel: #0a343a;
+    --ink: #eafaf6;
+    --ink-soft: #a9d3cd;
+    --ink-faint: #6fa39c;
+    --line: rgba(234,250,246,0.12);
+    --turquoise: #2fd6c4;
+    --turquoise-deep: #22b8a8;
+    --ocean: #7fd6e8;
+    --ocean-deep: #bdeef4;
+    --aqua: #57e0d8;
+    --seafoam: #0e4a49;
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    --shadow-2: 0 2px 6px rgba(0,0,0,0.35), 0 20px 45px -20px rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size:calc(16px * var(--fs-scale));
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease, color .35s ease;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    line-height:1.1;
+    margin:0;
+    color:var(--ink);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  ul,ol{margin:0;padding:0;}
+  li{list-style:none;}
+  button{font-family:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  .wrap{
+    width:100%;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  @media (min-width:640px){ .wrap{padding-left:36px;padding-right:36px;} }
+  @media (min-width:1024px){ .wrap{padding-left:56px;padding-right:56px;} }
+
+  /* ---------- Top controls bar ---------- */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top);
+  }
+  @supports not (backdrop-filter: blur(1px)){
+    .topbar{ background:var(--bg); }
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:12px;
+    padding-bottom:12px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.02rem;
+    letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+  .brand-mark{
+    width:26px;height:26px;border-radius:8px;
+    background:linear-gradient(135deg, var(--turquoise), var(--ocean));
+    flex:none;
+  }
+  .controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .fsize-group{
+    display:flex;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:999px;
+    overflow:hidden;
+    background:var(--bg-soft);
+  }
+  .fsize-group button{
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    width:30px;height:30px;
+    font-size:0.8rem;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fsize-group button.mid{ font-size:0.9rem; border-left:1px solid var(--line); border-right:1px solid var(--line); }
+  .fsize-group button:hover{ color:var(--turquoise-deep); }
+  .fsize-group button[aria-pressed="true"]{ color:var(--turquoise-deep); font-weight:700; }
+  .theme-toggle{
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    border-radius:999px;
+    width:36px;height:32px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    color:var(--ink-soft);
+  }
+  .theme-toggle:hover{ color:var(--turquoise-deep); }
+  .theme-toggle svg{width:16px;height:16px;}
+  .icon-moon{display:none;}
+  html.dark .icon-sun{display:none;}
+  html.dark .icon-moon{display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:52px 0 40px;
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 0%, var(--seafoam) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 100% 10%, var(--bg-soft-2) 0%, transparent 55%),
+      var(--bg);
+    text-align:center;
+  }
+  @media (min-width:1024px){ .hero{ padding:88px 0 64px; text-align:left; } }
+
+  .hero-grid{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    align-items:center;
+  }
+  @media (min-width:1024px){
+    .hero-grid{
+      flex-direction:row;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:40px;
+    }
+  }
+  .hero-copy{ max-width:640px; }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    letter-spacing:-0.02em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--turquoise-deep);
+  }
+  .hero p.lede{
+    margin-top:18px;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  @media (min-width:1024px){ .hero p.lede{ margin-left:0; margin-right:0; } }
+
+  .hero-ctas{
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:stretch;
+    width:100%;
+    max-width:340px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  @media (min-width:520px){
+    .hero-ctas{ flex-direction:row; max-width:none; width:auto; }
+  }
+  @media (min-width:1024px){ .hero-ctas{ margin-left:0; margin-right:0; } }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 22px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.96rem;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--turquoise), var(--turquoise-deep));
+    color:#03211f;
+    box-shadow:var(--shadow-1);
+  }
+  html.dark .btn-primary{ color:#03221e; }
+  .btn-primary:hover{ box-shadow:var(--shadow-2); }
+  .btn-ghost{
+    background:var(--bg);
+    border-color:var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{ border-color:var(--turquoise); color:var(--turquoise-deep); }
+
+  .hero-stat-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-l);
+    padding:22px 24px;
+    box-shadow:var(--shadow-2);
+    width:100%;
+    max-width:300px;
+  }
+  .hero-stat-card .eq{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    color:var(--turquoise-deep);
+    letter-spacing:-0.01em;
+  }
+  .hero-stat-card p{ margin-top:8px; color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:56px 0; }
+  .section-soft{ background:var(--bg-soft); }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 36px;
+  }
+  @media (min-width:1024px){ .section-head{ text-align:left; margin-left:0; } }
+  .section-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    font-weight:700;
+    color:var(--turquoise-deep);
+    margin-bottom:10px;
+  }
+  .section-tag .num{
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--turquoise);
+    color:#03211f;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.72rem;
+  }
+  html.dark .section-tag .num{ color:#04211e; }
+  .section-head h2{
+    font-size:clamp(1.6rem, 3.4vw, 2.3rem);
+    letter-spacing:-0.01em;
+  }
+  .section-head p{
+    margin-top:12px;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+  }
+
+  /* ---------- Diagnostic quiz ---------- */
+  .diag{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-l);
+    padding:28px 22px;
+    box-shadow:var(--shadow-2);
+    max-width:760px;
+    margin:0 auto;
+  }
+  @media (min-width:640px){ .diag{ padding:36px 40px; } }
+  .diag h3{ font-size:1.3rem; text-align:center; }
+  .diag > p.sub{ text-align:center; color:var(--ink-soft); margin-top:8px; font-size:0.96rem; }
+  .diag-options{
+    margin-top:22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .diag-option{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    cursor:pointer;
+    text-align:left;
+    background:var(--bg);
+  }
+  .diag-option:hover{ border-color:var(--turquoise); }
+  .diag-option input{ margin-top:3px; accent-color:var(--turquoise-deep); flex:none; }
+  .diag-option span{ font-size:0.95rem; color:var(--ink); }
+  .diag-actions{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+  }
+  .diag-result{
+    margin-top:22px;
+    padding:18px 20px;
+    border-radius:var(--radius-s);
+    background:var(--seafoam);
+    display:none;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  .diag-result.show{ display:flex; }
+  .diag-result p{ font-size:0.95rem; color:var(--ink); max-width:44ch; }
+  .diag-result strong{ display:block; font-family:'Fraunces',serif; font-size:1.05rem; margin-bottom:2px; }
+
+  /* ---------- Hub nav grid ---------- */
+  .hub-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  @media (min-width:640px){ .hub-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:1024px){ .hub-grid{ grid-template-columns:repeat(3,1fr); gap:20px; } }
+
+  .hub-card{
+    display:block;
+    text-decoration:none;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:24px;
+    box-shadow:var(--shadow-1);
+    transition:box-shadow .2s ease, border-color .2s ease;
+  }
+  .hub-card:hover{ box-shadow:var(--shadow-2); border-color:var(--turquoise); }
+  .hub-card .hnum{
+    font-family:'Fraunces',serif;
+    font-size:0.85rem;
+    color:var(--turquoise-deep);
+    font-weight:600;
+  }
+  .hub-card h3{
+    margin-top:8px;
+    font-size:1.22rem;
+  }
+  .hub-card p{
+    margin-top:10px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+  .hub-card .go{
+    margin-top:14px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--turquoise-deep);
+  }
+
+  /* ---------- Module layout ---------- */
+  .module{ scroll-margin-top:74px; }
+  .module-inner{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  @media (min-width:1024px){
+    .module-inner{ grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start; }
+    .module-inner.reverse{ direction:rtl; }
+    .module-inner.reverse > *{ direction:ltr; }
+  }
+
+  .prose{ text-align:center; }
+  @media (min-width:1024px){ .prose{ text-align:left; } }
+  .prose p{ color:var(--ink-soft); font-size:1rem; margin-top:14px; max-width:58ch; margin-left:auto; margin-right:auto; }
+  @media (min-width:1024px){ .prose p{ margin-left:0; margin-right:0; } }
+  .prose h2{ font-size:clamp(1.6rem,3.2vw,2.1rem); }
+
+  .case-box{
+    margin-top:22px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--turquoise);
+    border-radius:var(--radius-s);
+    padding:18px 20px;
+    text-align:left;
+    box-shadow:var(--shadow-1);
+  }
+  .case-box .label{
+    font-size:0.74rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--turquoise-deep);
+  }
+  .case-box p{ margin-top:8px; font-size:0.95rem; color:var(--ink); max-width:none; }
+
+  /* term cards (definitions) */
+  .term-stack{ display:flex; flex-direction:column; gap:14px; }
+  .term{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:16px 18px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    text-align:left;
+    box-shadow:var(--shadow-1);
+  }
+  .term .dot{
+    width:10px;height:10px;border-radius:3px;
+    background:var(--aqua);
+    margin-top:6px;
+    flex:none;
+  }
+  .term .tlabel{
+    font-size:0.7rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+  .term h4{ font-size:1.02rem; margin-top:2px; }
+  .term p{ margin-top:6px; font-size:0.9rem; color:var(--ink-soft); }
+
+  /* worksheet list */
+  .worksheet{
+    margin-top:22px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:22px 22px;
+    box-shadow:var(--shadow-1);
+    text-align:left;
+  }
+  .worksheet .wtitle{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1rem;
+    margin-bottom:14px;
+  }
+  .wq{ display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line); align-items:flex-start; }
+  .wq:first-of-type{ border-top:none; }
+  .wq .qn{
+    width:24px;height:24px;border-radius:50%;
+    background:var(--seafoam);
+    color:var(--turquoise-deep);
+    font-size:0.75rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    flex:none; margin-top:2px;
+  }
+  .wq p{ font-size:0.92rem; color:var(--ink); }
+
+  /* ---------- Calculator ---------- */
+  .calc{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-l);
+    padding:24px 22px;
+    box-shadow:var(--shadow-2);
+    text-align:left;
+  }
+  @media (min-width:640px){ .calc{ padding:30px 32px; } }
+  .calc h3{ font-size:1.15rem; }
+  .calc .sub{ color:var(--ink-soft); font-size:0.9rem; margin-top:6px; }
+  .field{ margin-top:18px; }
+  .field label{
+    display:flex; justify-content:space-between;
+    font-size:0.86rem; font-weight:700; color:var(--ink);
+    margin-bottom:8px;
+  }
+  .field label .val{ color:var(--turquoise-deep); font-family:'Fraunces',serif; }
+  .field input[type="range"]{
+    width:100%;
+    accent-color:var(--turquoise-deep);
+  }
+  .calc-out{
+    margin-top:22px;
+    padding:18px 20px;
+    border-radius:var(--radius-s);
+    background:var(--seafoam);
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .calc-out .k{ font-size:0.86rem; color:var(--ink-soft); }
+  .calc-out .v{ font-family:'Fraunces',serif; font-size:1.7rem; color:var(--ocean-deep); }
+  html:not(.dark) .calc-out .v{ color:var(--turquoise-deep); }
+
+  .price-compare{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  @media (min-width:520px){ .price-compare{ grid-template-columns:1fr 1fr; } }
+  .pc-col{
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:14px 16px;
+  }
+  .pc-col.hi{ border-color:var(--turquoise); background:var(--bg-soft); }
+  .pc-col .pc-label{ font-size:0.75rem; font-weight:700; color:var(--ink-faint); text-transform:uppercase; }
+  .pc-col .pc-rev{ font-family:'Fraunces',serif; font-size:1.3rem; margin-top:6px; }
+
+  /* ---------- Journey steps ---------- */
+  .journey{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .jstep{
+    display:flex;
+    gap:16px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+    text-align:left;
+  }
+  .jstep:first-child{ border-top:none; padding-top:0; }
+  .jstep .jn{
+    width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg, var(--turquoise), var(--ocean));
+    color:#03211f;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:0.9rem;
+    flex:none;
+  }
+  html.dark .jstep .jn{ color:#04221f; }
+  .jstep h4{ font-size:1.02rem; }
+  .jstep p{ font-size:0.9rem; color:var(--ink-soft); margin-top:5px; }
+
+  /* objections accordion */
+  .objections{ display:flex; flex-direction:column; gap:10px; }
+  .obj{
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    background:var(--panel);
+    overflow:hidden;
+    text-align:left;
+  }
+  .obj summary{
+    padding:14px 16px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:0.95rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    list-style:none;
+  }
+  .obj summary::-webkit-details-marker{ display:none; }
+  .obj summary .plus{ color:var(--turquoise-deep); font-size:1.1rem; flex:none; margin-left:12px; }
+  .obj[open] summary .plus{ transform:rotate(45deg); }
+  .obj summary .plus{ transition:transform .15s ease; display:inline-block; }
+  .obj .obj-body{ padding:0 16px 16px; font-size:0.9rem; color:var(--ink-soft); }
+
+  /* checklist */
+  .check-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  @media (min-width:640px){ .check-grid{ grid-template-columns:1fr 1fr; } }
+  .check-item{
+    display:flex;
+    gap:12px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:14px 16px;
+    text-align:left;
+    box-shadow:var(--shadow-1);
+  }
+  .check-item .c-ico{
+    width:20px;height:20px;border-radius:6px;
+    border:2px solid var(--turquoise);
+    flex:none; margin-top:2px;
+  }
+  .check-item h4{ font-size:0.96rem; }
+  .check-item p{ font-size:0.87rem; color:var(--ink-soft); margin-top:4px; }
+
+  /* stages */
+  .stages{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  @media (min-width:900px){ .stages{ grid-template-columns:repeat(3,1fr); } }
+  .stage{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:22px;
+    text-align:left;
+    box-shadow:var(--shadow-1);
+  }
+  .stage .st-tag{
+    display:inline-block;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    color:var(--turquoise-deep);
+    background:var(--seafoam);
+    padding:4px 10px;
+    border-radius:999px;
+  }
+  .stage h4{ margin-top:12px; font-size:1.1rem; }
+  .stage .stage-row{ margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
+  .stage .stage-row .k{ font-size:0.72rem; font-weight:700; color:var(--ink-faint); text-transform:uppercase; }
+  .stage .stage-row p{ font-size:0.88rem; color:var(--ink-soft); margin-top:4px; }
+
+  /* glossary */
+  .gloss-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  @media (min-width:640px){ .gloss-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:1024px){ .gloss-grid{ grid-template-columns:1fr 1fr 1fr; } }
+  .gterm{
+    padding:14px 16px;
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    text-align:left;
+    background:var(--panel);
+  }
+  .gterm h5{ font-family:'Fraunces',serif; font-size:0.96rem; font-weight:600; }
+  .gterm p{ font-size:0.85rem; color:var(--ink-soft); margin-top:5px; }
+
+  /* closing */
+  .closing{
+    background:linear-gradient(160deg, var(--ocean-deep), var(--ocean) 60%, var(--turquoise-deep));
+    border-radius:var(--radius-l);
+    padding:44px 26px;
+    text-align:center;
+    color:#eafaf6;
+    box-shadow:var(--shadow-2);
+  }
+  @media (min-width:1024px){ .closing{ padding:64px 60px; } }
+  .closing h2{ color:#f4fffc; font-size:clamp(1.6rem,3.6vw,2.4rem); }
+  .closing p{ color:#cdeee8; margin-top:14px; max-width:56ch; margin-left:auto; margin-right:auto; font-size:1.02rem; }
+  .closing .btn-primary{ background:#eafaf6; color:var(--ocean-deep); margin-top:24px; }
+  .closing .btn-primary:hover{ box-shadow:0 10px 30px rgba(0,0,0,0.25); }
+
+  footer{
+    padding:36px 0 calc(28px + env(safe-area-inset-bottom));
+    text-align:center;
+    color:var(--ink-faint);
+    font-size:0.84rem;
+  }
+  footer p + p{ margin-top:6px; }
+
+  .visually-hidden{
+    position:absolute; width:1px;height:1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;
+  }
+
+  :focus-visible{
+    outline:2px solid var(--turquoise-deep);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Find the One Thing
+    </div>
+    <div class="controls">
+      <div class="fsize-group" role="group" aria-label="Text size">
+        <button type="button" data-size="15" aria-label="Smaller text">A-</button>
+        <button type="button" class="mid" data-size="16" aria-pressed="true" aria-label="Default text size">A</button>
+        <button type="button" data-size="19" aria-label="Larger text">A+</button>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Your business isn&rsquo;t complicated.<br>It&rsquo;s just <em>stuck</em> somewhere.</h1>
+        <p class="lede">A practical, walk-through guide to finding the single thing capping your growth right now — and fixing it before you touch anything else. Built around a real dental practice. Written for any business.</p>
+        <div class="hero-ctas">
+          <a href="#diagnostic" class="btn btn-primary">Start the diagnostic</a>
+          <a href="#hub" class="btn btn-ghost">Browse the guide</a>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="eq">Leads &times; Conversion &times; Price</div>
+        <p>Every business, in every industry, grows through some version of this equation. This guide helps you find which piece is broken.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTIC QUIZ -->
+  <section id="diagnostic">
+    <div class="wrap">
+      <div class="diag">
+        <h3>Where&rsquo;s your bottleneck hiding?</h3>
+        <p class="sub">Pick the sentence that sounds most like your business right now.</p>
+        <form id="diagForm">
+          <div class="diag-options">
+            <label class="diag-option">
+              <input type="radio" name="bottleneck" value="leads">
+              <span>Not enough people are finding out we exist. The phone just doesn&rsquo;t ring enough.</span>
+            </label>
+            <label class="diag-option">
+              <input type="radio" name="bottleneck" value="conversion">
+              <span>People inquire or book, but too many disappear before they ever become a customer.</span>
+            </label>
+            <label class="diag-option">
+              <input type="radio" name="bottleneck" value="offer">
+              <span>We get customers, but the revenue per customer feels too thin for the effort it takes.</span>
+            </label>
+            <label class="diag-option">
+              <input type="radio" name="bottleneck" value="capacity">
+              <span>We&rsquo;re maxed out. More demand right now would just mean longer waits, not more revenue.</span>
+            </label>
+          </div>
+          <div class="diag-actions">
+            <button type="submit" class="btn btn-primary">Show me where to start</button>
+          </div>
+        </form>
+        <div class="diag-result" id="diagResult">
+          <p id="diagResultText"></p>
+          <a href="#" id="diagResultLink" class="btn btn-ghost">Jump there</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUB NAV -->
+  <section id="hub" class="section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">The Guide</span>
+        <h2>Six stops, taken in order</h2>
+        <p>Each module builds on the last. If you&rsquo;re not sure where to begin, start at the top — most businesses skip straight to marketing and miss the thing actually holding them back.</p>
+      </div>
+      <div class="hub-grid">
+        <a href="#m1" class="hub-card">
+          <div class="hnum">01</div>
+          <h3>Find your bottleneck</h3>
+          <p>The one constraint quietly capping everything else, and how to spot it before you spend a dollar on ads.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+        <a href="#m2" class="hub-card">
+          <div class="hnum">02</div>
+          <h3>Know your numbers</h3>
+          <p>Leads, conversion, and price — the three levers behind every dollar of revenue. Try the calculator.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+        <a href="#m3" class="hub-card">
+          <div class="hnum">03</div>
+          <h3>Build the offer</h3>
+          <p>What makes something feel worth a higher price, and how to describe the exact customer it&rsquo;s for.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+        <a href="#m4" class="hub-card">
+          <div class="hnum">04</div>
+          <h3>Map the journey</h3>
+          <p>From first contact to closed sale — the steps, and the objections that stop people along the way.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+        <a href="#m5" class="hub-card">
+          <div class="hnum">05</div>
+          <h3>Remove the friction</h3>
+          <p>Payment plans, softer alternatives, and proof — the small things that quietly kill otherwise-good sales.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+        <a href="#m6" class="hub-card">
+          <div class="hnum">06</div>
+          <h3>Grow without breaking</h3>
+          <p>What tends to snap first as a small business adds its first hires, and how to stay ahead of it.</p>
+          <div class="go">Read module &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 1 -->
+  <section id="m1" class="module">
+    <div class="wrap module-inner">
+      <div class="prose">
+        <span class="section-tag"><span class="num">1</span>Find your bottleneck</span>
+        <h2>Before you fix anything, find the one thing actually stopping growth.</h2>
+        <p>Most businesses have a dozen things that feel broken at once — the website, the follow-up, the pricing, the team. But usually only one of them is the real ceiling. Everything else is a symptom of that one constraint, and fixing the symptoms first just wastes effort.</p>
+        <p>A bottleneck is whatever the business can&rsquo;t get past no matter what else improves. A <strong>limiting belief</strong> is a close cousin: an assumption that&rsquo;s been treated as fact for so long that nobody&rsquo;s tested it — &ldquo;our customers would never accept that,&rdquo; &ldquo;only I can do this part.&rdquo; Those beliefs quietly set a ceiling long before any real constraint does.</p>
+
+        <div class="case-box">
+          <div class="label">CASE SNAPSHOT — A FAMILY DENTAL PRACTICE</div>
+          <p>One dentist did every high-value procedure himself, booked a month out, and couldn&rsquo;t justify hiring a second dentist without proof there&rsquo;d be enough work to fill their schedule. The assumption was that patients would only trust the owner. Once the practice mapped a single treatment into its individual visits and asked, honestly, which steps truly needed the owner, most of them didn&rsquo;t. That one exercise — not a new ad campaign — was what actually unlocked capacity.</p>
+        </div>
+
+        <div class="worksheet">
+          <div class="wtitle">Try it on your business</div>
+          <div class="wq"><div class="qn">1</div><p>What part of your business only works because one specific person is doing it?</p></div>
+          <div class="wq"><div class="qn">2</div><p>What have you been assuming is true about your customers that you&rsquo;ve never actually tested?</p></div>
+          <div class="wq"><div class="qn">3</div><p>If that one constraint disappeared tomorrow, what would break next? That&rsquo;s often your real bottleneck.</p></div>
+        </div>
+      </div>
+
+      <div class="term-stack">
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Bottleneck</h4>
+            <p>Whatever caps output regardless of what else improves — the narrowest point the whole business has to pass through.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Limiting belief</h4>
+            <p>An assumption treated as fact that quietly caps a business, even though it&rsquo;s never actually been tested.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Capacity</h4>
+            <p>The maximum a business can deliver in a given period without adding people, hours, or systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 2 -->
+  <section id="m2" class="module section-soft">
+    <div class="wrap module-inner reverse">
+      <div class="calc">
+        <h3>Try the growth equation on your own numbers</h3>
+        <p class="sub">Move the sliders to match your business, roughly.</p>
+
+        <div class="field">
+          <label>Leads per month <span class="val" id="leadsVal">120</span></label>
+          <input type="range" id="leadsSlider" min="5" max="500" value="120" step="5">
+        </div>
+        <div class="field">
+          <label>Close rate <span class="val" id="convVal">20%</span></label>
+          <input type="range" id="convSlider" min="1" max="80" value="20" step="1">
+        </div>
+        <div class="field">
+          <label>Average price <span class="val" id="priceVal">$1,200</span></label>
+          <input type="range" id="priceSlider" min="50" max="20000" value="1200" step="50">
+        </div>
+
+        <div class="calc-out">
+          <span class="k">Estimated monthly revenue</span>
+          <span class="v" id="revOut">$28,800</span>
+        </div>
+
+        <p class="sub" style="margin-top:20px;">Now compare: what if price went up, even if a few less people said yes?</p>
+        <div class="price-compare">
+          <div class="pc-col">
+            <div class="pc-label">Current</div>
+            <div class="pc-rev" id="pcCurrent">$28,800</div>
+          </div>
+          <div class="pc-col hi">
+            <div class="pc-label">+40% price, &minus;25% close rate</div>
+            <div class="pc-rev" id="pcHigher">$30,240</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <span class="section-tag"><span class="num">2</span>Know your numbers</span>
+        <h2>Revenue is just three numbers multiplied together.</h2>
+        <p>Leads times close rate times price. Most owners jump straight to &ldquo;we need more leads&rdquo; when the honest answer is usually one of the other two. If close rate is weak, more leads just means more people leaking out of a broken process, faster.</p>
+        <p>A useful rule: fix conversion before you pay for more traffic. And don&rsquo;t assume raising price loses money — a smaller number of buyers at a meaningfully higher price is very often a straightforward win, as the calculator here shows.</p>
+
+        <div class="case-box">
+          <div class="label">CASE SNAPSHOT, CONTINUED</div>
+          <p>Once the practice had spare capacity, it made sense to spend more on advertising. But price moved up first — the team found that a modest drop in close rate at a much higher price still meant more revenue per booked visit, and a lot less pressure on the calendar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 3 -->
+  <section id="m3" class="module">
+    <div class="wrap module-inner">
+      <div class="prose">
+        <span class="section-tag"><span class="num">3</span>Build the offer</span>
+        <h2>Make the offer worth the price before you try to sell it harder.</h2>
+        <p>An offer feels expensive when the price is unclear relative to the outcome. It feels obvious when the outcome is big, the path to it feels believable, it doesn&rsquo;t take forever, and it doesn&rsquo;t ask for much sacrifice along the way. Improve any of those four and you can usually charge more without pushing harder.</p>
+        <p>None of that works, though, if you&rsquo;re describing it to everyone. The sharper you can get about exactly who it&rsquo;s for, the easier every later step becomes — the marketing, the sales conversation, even the price.</p>
+
+        <div class="case-box">
+          <div class="label">CASE SNAPSHOT, CONTINUED</div>
+          <p>&ldquo;Dental patients&rdquo; is not a customer. &ldquo;An adult missing one or more teeth who&rsquo;s been putting off treatment because of cost or fear&rdquo; is. Once the practice got that specific, the guarantees, photos, and language used in every appointment could speak directly to that one person&rsquo;s actual hesitation — instead of trying to reassure everyone a little.</p>
+        </div>
+      </div>
+
+      <div class="term-stack">
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>High ticket</h4>
+            <p>An offer priced high enough that each individual sale matters a lot — fewer sales, bigger dollars, and every conversation counts.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Avatar</h4>
+            <p>The one specific type of customer you&rsquo;re building the offer, the marketing, and the sales pitch for.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>What makes an offer feel worth it</h4>
+            <p>A big believable outcome, delivered quickly, without asking too much of the customer along the way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 4 -->
+  <section id="m4" class="module section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag"><span class="num">4</span>Map the journey</span>
+        <h2>Trace every step from stranger to customer</h2>
+        <p>Draw the actual sequence your business uses today, then look for friction at each step — not what you assume happens, what actually happens.</p>
+      </div>
+
+      <div class="module-inner">
+        <div class="journey">
+          <div class="jstep">
+            <div class="jn">1</div>
+            <div>
+              <h4>Someone raises a hand</h4>
+              <p>A lead: someone who clicked, called, or filled out a form. What matters here is simply how many arrive per week.</p>
+            </div>
+          </div>
+          <div class="jstep">
+            <div class="jn">2</div>
+            <div>
+              <h4>They get an answer, fast</h4>
+              <p>Speed to first contact is one of the biggest silent leaks in most businesses. A great lead contacted two days late is often a lost one.</p>
+            </div>
+          </div>
+          <div class="jstep">
+            <div class="jn">3</div>
+            <div>
+              <h4>They arrive already informed</h4>
+              <p>A short video or page that answers the obvious questions before the real conversation starts, so the meeting itself can focus on their specific situation.</p>
+            </div>
+          </div>
+          <div class="jstep">
+            <div class="jn">4</div>
+            <div>
+              <h4>The actual conversation</h4>
+              <p>Your sales motion: the exact sequence from &ldquo;interested&rdquo; to &ldquo;paid.&rdquo; Walk it yourself, looking for the point where people usually hesitate.</p>
+            </div>
+          </div>
+          <div class="jstep">
+            <div class="jn">5</div>
+            <div>
+              <h4>A clear next step</h4>
+              <p>A call to action: the explicit instruction for what to do next. Content without one entertains. Content with one moves someone forward.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:1.15rem; margin-bottom:14px; text-align:center;">Common objections, and a starting response</h3>
+          <div class="objections">
+            <details class="obj" open>
+              <summary>&ldquo;I need to think about the cost&rdquo;<span class="plus">+</span></summary>
+              <div class="obj-body">Usually a signal that value hasn&rsquo;t been made obvious yet, not that the price is genuinely wrong. Revisit the outcome before you revisit the number.</div>
+            </details>
+            <details class="obj">
+              <summary>&ldquo;Not the right time&rdquo;<span class="plus">+</span></summary>
+              <div class="obj-body">Ask what would need to be true for the timing to work. Often there&rsquo;s a real, fixable reason underneath — and sometimes a payment plan is the actual answer.</div>
+            </details>
+            <details class="obj">
+              <summary>&ldquo;I want to get another opinion&rdquo;<span class="plus">+</span></summary>
+              <div class="obj-body">A trust gap. Proof — real photos, numbers, or stories from people like them — usually closes this faster than more persuasion.</div>
+            </details>
+            <details class="obj">
+              <summary>&ldquo;I need to check with my partner&rdquo;<span class="plus">+</span></summary>
+              <div class="obj-body">Fair, and worth respecting. Give them something concrete to bring back to that conversation, rather than leaving it to memory.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 5 -->
+  <section id="m5" class="module">
+    <div class="wrap module-inner reverse">
+      <div class="term-stack">
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Financing</h4>
+            <p>A third party pays you in full today; the customer repays that lender over time. You get paid now, they get a payment plan.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Downsell</h4>
+            <p>A smaller, easier option offered only if someone turns down the main offer — a fallback, never the default.</p>
+          </div>
+        </div>
+        <div class="term">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="tlabel">Definition</div>
+            <h4>Before &amp; after proof</h4>
+            <p>Concrete evidence of the transformation you deliver — photos, numbers, or stories that do the convincing for you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <span class="section-tag"><span class="num">5</span>Remove the friction</span>
+        <h2>Good sales quietly die from small, fixable friction.</h2>
+        <p>Most lost sales aren&rsquo;t about the price itself — they&rsquo;re about the gap between what something costs today and what the customer can pay today. Financing and payment plans close that gap without you discounting anything.</p>
+        <p>Proof works the same way for trust. Nobody has to take your word for the outcome if you can just show it to them — clearly, specifically, and from someone who looks like them.</p>
+
+        <div class="case-box">
+          <div class="label">CASE SNAPSHOT, CONTINUED</div>
+          <p>Adding a financing option didn&rsquo;t change the treatment price at all — it changed whether patients could say yes today instead of putting it off indefinitely. The pay-per-visit option stayed on the table, but only as a fallback, never presented first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 6 -->
+  <section id="m6" class="module section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag"><span class="num">6</span>Grow without breaking</span>
+        <h2>What tends to snap first as you grow</h2>
+        <p>Every stage of growth trades one set of problems for another. Knowing what&rsquo;s coming next means you can build the fix before the constraint actually bites.</p>
+      </div>
+
+      <div class="stages">
+        <div class="stage">
+          <span class="st-tag">Just you</span>
+          <h4>Everything runs through one person</h4>
+          <div class="stage-row">
+            <div class="k">What usually breaks</div>
+            <p>You are the bottleneck. Quality is consistent because you touch everything, but so is your ceiling.</p>
+          </div>
+          <div class="stage-row">
+            <div class="k">What helps</div>
+            <p>Write down how you actually do the work, before you need to hand any of it off.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <span class="st-tag">First few hires</span>
+          <h4>You&rsquo;re delegating, but loosely</h4>
+          <div class="stage-row">
+            <div class="k">What usually breaks</div>
+            <p>Inconsistent quality, unclear ownership, and no simple way to see what&rsquo;s actually working.</p>
+          </div>
+          <div class="stage-row">
+            <div class="k">What helps</div>
+            <p>A short handbook, a shared place to track leads and customers, and a handful of numbers you check weekly.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <span class="st-tag">Small team</span>
+          <h4>Systems matter more than effort</h4>
+          <div class="stage-row">
+            <div class="k">What usually breaks</div>
+            <p>Word-of-mouth processes stop scaling. What worked informally starts producing real inconsistency.</p>
+          </div>
+          <div class="stage-row">
+            <div class="k">What helps</div>
+            <p>Turn your best person&rsquo;s habits into a repeatable process everyone else can follow, not just imitate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-grid" style="margin-top:32px;">
+        <div class="check-item">
+          <div class="c-ico" aria-hidden="true"></div>
+          <div><h4>Revisit this diagnostic quarterly</h4><p>Your bottleneck moves as you grow. What was true six months ago probably isn&rsquo;t now.</p></div>
+        </div>
+        <div class="check-item">
+          <div class="c-ico" aria-hidden="true"></div>
+          <div><h4>Fix one thing at a time</h4><p>Changing price, marketing, and the sales process all at once makes it impossible to know what worked.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section id="glossary">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">Reference</span>
+        <h2>The full glossary</h2>
+        <p>Every term from the guide, in one place, for whenever you need a quick reminder.</p>
+      </div>
+      <div class="gloss-grid">
+        <div class="gterm"><h5>Bottleneck</h5><p>The one constraint capping output no matter what else improves.</p></div>
+        <div class="gterm"><h5>Limiting belief</h5><p>An untested assumption treated as fact that quietly caps a business.</p></div>
+        <div class="gterm"><h5>Capacity</h5><p>The most a business can deliver without adding people, hours, or systems.</p></div>
+        <div class="gterm"><h5>Lead / lead flow</h5><p>A potential customer who's raised their hand, and how many arrive per period.</p></div>
+        <div class="gterm"><h5>Conversion / close rate</h5><p>The share of leads who become paying customers.</p></div>
+        <div class="gterm"><h5>High ticket</h5><p>An offer priced high enough that each individual sale matters a lot.</p></div>
+        <div class="gterm"><h5>Avatar</h5><p>The one specific type of customer everything is built for.</p></div>
+        <div class="gterm"><h5>Sales motion</h5><p>The exact sequence of steps from interested to paid.</p></div>
+        <div class="gterm"><h5>Call to action</h5><p>The explicit instruction for what to do next.</p></div>
+        <div class="gterm"><h5>Financing</h5><p>A lender pays you today; the customer repays them over time.</p></div>
+        <div class="gterm"><h5>Downsell</h5><p>A cheaper fallback offered only after the main offer is declined.</p></div>
+        <div class="gterm"><h5>Before &amp; after proof</h5><p>Concrete evidence of the transformation you deliver.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section>
+    <div class="wrap">
+      <div class="closing">
+        <h2>You don&rsquo;t need a bigger plan. You need the next right fix.</h2>
+        <p>Pick the module that matches your diagnostic result, work through its worksheet, and make one change. Then come back and run the numbers again.</p>
+        <a href="#diagnostic" class="btn btn-primary">Take the diagnostic again</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>A self-serve guide for owners who&rsquo;d rather fix it themselves than hire it out.</p>
+    <p>Concepts adapted and generalized from common small-business growth practice — examples are illustrative, not case-specific advice.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- Font size control ----
+  var buttons = document.querySelectorAll('.fsize-group button');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var size = btn.getAttribute('data-size');
+      document.documentElement.style.fontSize = size + 'px';
+      buttons.forEach(function(b){ b.removeAttribute('aria-pressed'); });
+      btn.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // ---- Theme toggle ----
+  var themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', function(){
+    var isDark = document.documentElement.classList.toggle('dark');
+    themeBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  });
+
+  // ---- Diagnostic quiz ----
+  var diagForm = document.getElementById('diagForm');
+  var diagResult = document.getElementById('diagResult');
+  var diagResultText = document.getElementById('diagResultText');
+  var diagResultLink = document.getElementById('diagResultLink');
+
+  var mapping = {
+    leads: { anchor: '#m4', label: 'Module 4 — Map the Journey', text: 'Before buying more traffic, trace your current journey end to end. Weak lead flow is often a conversion problem wearing a lead-flow costume.' },
+    conversion: { anchor: '#m4', label: 'Module 4 — Map the Journey', text: 'Start by mapping the journey and reading through the objections list — most conversion leaks happen at a specific, findable step.' },
+    offer: { anchor: '#m3', label: 'Module 3 — Build the Offer', text: 'Thin revenue per customer usually means the offer needs sharpening before the marketing does. Start with the offer module.' },
+    capacity: { anchor: '#m1', label: 'Module 1 — Find Your Bottleneck', text: 'When demand outpaces capacity, adding more leads just makes the wait longer. Start by finding what\u2019s really capping delivery.' }
+  };
+
+  diagForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var val = diagForm.querySelector('input[name="bottleneck"]:checked');
+    if(!val){ return; }
+    var m = mapping[val.value];
+    diagResultText.innerHTML = '<strong>' + m.label + '</strong>' + m.text;
+    diagResultLink.setAttribute('href', m.anchor);
+    diagResult.classList.add('show');
+  });
+
+  // ---- Revenue calculator ----
+  var leadsSlider = document.getElementById('leadsSlider');
+  var convSlider = document.getElementById('convSlider');
+  var priceSlider = document.getElementById('priceSlider');
+  var leadsVal = document.getElementById('leadsVal');
+  var convVal = document.getElementById('convVal');
+  var priceVal = document.getElementById('priceVal');
+  var revOut = document.getElementById('revOut');
+  var pcCurrent = document.getElementById('pcCurrent');
+  var pcHigher = document.getElementById('pcHigher');
+
+  function fmt(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function recalc(){
+    var leads = parseInt(leadsSlider.value, 10);
+    var conv = parseInt(convSlider.value, 10);
+    var price = parseInt(priceSlider.value, 10);
+
+    leadsVal.textContent = leads;
+    convVal.textContent = conv + '%';
+    priceVal.textContent = fmt(price);
+
+    var revenue = leads * (conv/100) * price;
+    revOut.textContent = fmt(revenue);
+    pcCurrent.textContent = fmt(revenue);
+
+    var higherPrice = price * 1.4;
+    var lowerConvCount = leads * (conv/100) * 0.75;
+    var higherRevenue = lowerConvCount * higherPrice;
+    pcHigher.textContent = fmt(higherRevenue);
+  }
+
+  [leadsSlider, convSlider, priceSlider].forEach(function(el){
+    el.addEventListener('input', recalc);
+  });
+  recalc();
+})();
+</script>
+
+</body>
+</html>
